@@ -15,30 +15,64 @@ import {
 import { parseStringify } from "../utils";
 
 // CREATE APPWRITE USER
+// export const createUser = async (user: CreateUserParams) => {
+//   try {
+//     // Create new user -> https://appwrite.io/docs/references/1.5.x/server-nodejs/users#create
+//     const newuser = await users.create(
+//       ID.unique(),
+//       user.email,
+//       user.phone,
+//       undefined,
+//       user.name
+//     );
+
+//     return parseStringify(newuser);
+//   } catch (error: any) {
+//     // Check existing user
+//     if (error && error?.code === 409) {
+//       const existingUser = await users.list([
+//         Query.equal("email", [user.email]),
+//       ]);
+
+//       return existingUser.users[0];
+//     }
+//     console.error("An error occurred while creating a new user:", error);
+//   }
+// };
+
+
+// CREATE APPWRITE USER
 export const createUser = async (user: CreateUserParams) => {
   try {
-    // Create new user -> https://appwrite.io/docs/references/1.5.x/server-nodejs/users#create
-    const newuser = await users.create(
+    const newUser = await users.create(
       ID.unique(),
       user.email,
       user.phone,
       undefined,
       user.name
     );
-
-    return parseStringify(newuser);
+    return parseStringify(newUser);
   } catch (error: any) {
-    // Check existing user
-    if (error && error?.code === 409) {
-      const existingUser = await users.list([
-        Query.equal("email", [user.email]),
+    if (error?.code === 409) {
+      // Check both email AND phone
+      const [emailMatch, phoneMatch] = await Promise.all([
+        users.list([Query.equal("email", [user.email])]),
+        users.list([Query.equal("phone", [user.phone])])
       ]);
 
-      return existingUser.users[0];
+      // Return whichever exists
+      return parseStringify(
+        emailMatch.users[0] || 
+        phoneMatch.users[0] || 
+        null
+      );
     }
-    console.error("An error occurred while creating a new user:", error);
+    console.error("User creation error:", error);
+    throw error;
   }
 };
+
+
 
 // GET USER
 export const getUser = async (userId: string) => {
