@@ -44,40 +44,50 @@ export const Doctors = [
   {
     image: "/assets/images/dr-green.png",
     name: "John Green",
+    specialty: "Cardiology",
   },
   {
     image: "/assets/images/dr-cameron.png",
     name: "Leila Cameron",
+    specialty: "Dermatology",
   },
   {
     image: "/assets/images/dr-livingston.png",
     name: "David Livingston",
+    specialty: "Orthopedics",
   },
   {
     image: "/assets/images/dr-peter.png",
     name: "Evan Peter",
+    specialty: "Pediatrics",
   },
   {
     image: "/assets/images/dr-powell.png",
     name: "Jane Powell",
+    specialty: "Neurology",
   },
   {
     image: "/assets/images/dr-remirez.png",
     name: "Alex Ramirez",
+    specialty: "General Practice",
   },
   {
     image: "/assets/images/dr-lee.png",
     name: "Jasmine Lee",
+    specialty: "Gynecology",
   },
   {
     image: "/assets/images/dr-cruz.png",
     name: "Alyana Cruz",
+    specialty: "ENT",
   },
   {
     image: "/assets/images/dr-sharma.png",
     name: "Hardik Sharma",
+    specialty: "Psychiatry",
   },
 ];
+
 
 export const StatusIcon = {
   scheduled: "/assets/icons/check.svg",

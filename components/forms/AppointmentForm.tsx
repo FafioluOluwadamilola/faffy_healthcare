@@ -151,7 +151,7 @@ export const AppointmentForm = ({
             >
               {Doctors.map((doctor, i) => (
                 <SelectItem key={doctor.name + i} value={doctor.name}>
-                  <div className="flex cursor-pointer items-center gap-2">
+                  <div className="flex cursor-pointer items-center gap-4 py-2">
                     <Image
                       src={doctor.image}
                       width={32}
@@ -159,7 +159,11 @@ export const AppointmentForm = ({
                       alt="doctor"
                       className="rounded-full border border-dark-500"
                     />
-                    <p>{doctor.name}</p>
+                    <div className="flex flex-col">
+                      <p className="text-sm font-medium leading-none">{doctor.name}</p>
+                      <span className="text-xs text-gray-750 text-muted-foreground mt-1 ">{doctor.specialty}</span>
+                    </div>
+
                   </div>
                 </SelectItem>
               ))}

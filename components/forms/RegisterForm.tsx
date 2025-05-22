@@ -234,15 +234,18 @@ const RegisterForm = ({ user }: { user: User }) => {
           >
             {Doctors.map((doctor, i) => (
               <SelectItem key={doctor.name + i} value={doctor.name}>
-                <div className="flex cursor-pointer items-center gap-2">
+                <div className="flex cursor-pointer items-center gap-4 py-2">
                   <Image
                     src={doctor.image}
                     width={32}
                     height={32}
                     alt="doctor"
-                    className="rounded-full border border-dark-500"
+                    className="rounded-full border border-dark-500 object-cover"
                   />
-                  <p>{doctor.name}</p>
+                  <div className="flex flex-col justify-center">
+                    <p className="text-sm font-medium leading-none">Dr. {doctor.name}</p>
+                    <span className="text-xs text-gray-750 mt-2 pl-0 ml-0">{doctor.specialty}</span>
+                  </div>
                 </div>
               </SelectItem>
             ))}

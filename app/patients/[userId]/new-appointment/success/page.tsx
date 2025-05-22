@@ -54,7 +54,10 @@ const RequestSuccess = async ({
               height={100}
               className="size-6"
             />
-            <p className="whitespace-nowrap">Dr. {doctor?.name}</p>
+            <div className="flex flex-col">
+              <p className="text-sm font-medium leading-none">Dr. {doctor?.name}</p>
+              <span className="text-sm text-gray-750 text-muted-foreground mt-1">{doctor?.specialty}</span>
+            </div>
           </div>
           <div className="flex gap-2">
             <Image
